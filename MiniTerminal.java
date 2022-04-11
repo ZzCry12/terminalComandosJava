@@ -9,47 +9,49 @@ public class MiniTerminal {
     private static boolean run = true;
 
     public static void main(String[] args) {
-        init();
+        consola();
     }
 
-    private static void init() {
+    private static void consola() {
 
         MiniFileManagement manager = new MiniFileManagement();
 
         while (run) {
-            System.out.println("\nIntroduce 'HELP' para más información");
+            System.out.println("\n[!]Introdueix 'HELP' per a més informació");
             System.out.print("\n[> ");
             comando = sc.nextLine();
 
             String[] args = comando.split(" ");
 
-            switch (args[0]) {
+            switch (args[0].toLowerCase()) {
                 case "pwd":
-                    manager.pwd(args[1]);
+                    manager.pwd(args[0]);
                     break;
                 case "cd":
-                    manager.cd(args[1]);
+                    manager.cd(args[0]);
                     break;
                 case "ls":
-                    manager.ls(args[1], args[2]);
+                    manager.ls(args[0]);
                     break;
                 case "ll":
-                    manager.ll(args[1]);
+                    manager.ll(args[0]);
                     break;
                 case "mkdir":
-                    manager.mkdir(args[1]);
+                    manager.mkdir(args[0]);
                     break;
                 case "rm":
-                    manager.rm(args[1]);
+                    manager.rm(args[0]);
                     break;
                 case "mv":
-                    manager.mv(args[1], args[2]);
+                    manager.mv(args[0], args[0]);
                     break;
                 case "help":
                     manager.help();
                     break;
                 case "exit":
-                    System.out.println("Hasta luego!");
+                    System.out.println("[!]Tancant terminal...");
+                    System.out.println("..");
+                    System.out.println(".");
                     System.exit(0);
                     break;
                 default:
