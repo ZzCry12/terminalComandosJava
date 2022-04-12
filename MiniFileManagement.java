@@ -4,6 +4,8 @@ import java.io.*;
 import java.util.Arrays;
 import java.util.Scanner;
 
+import javax.swing.JOptionPane;
+
 public class MiniFileManagement {
     private File rutaactual = new File(System.getProperty("user.dir"));
     static Scanner sc = new Scanner(System.in);
@@ -15,18 +17,33 @@ public class MiniFileManagement {
 
     public void help() {
 
-        System.out.println("[?]**************[Ajuda terminal]**************");
-        System.out.println("pwd: Mostra quina és la carpeta actual");
-        System.out.println("cd <DIR>: Canvia la carpeta actual a ‘DIR’. Amb .. canvia a la carpeta superior");
-        System.out.println(
-                "ls: Mostra la llista de directoris i arxius de la carpeta actual (primer directoris, després arxius, tots dos ordenats alfabèticament)");
-        System.out.println("ll: Com ls però mostra també la grandària i la data d'última modificació.");
-        System.out.println("mkdir <DIR>: Crea el directori ‘DIR’ en la carpeta actual");
-        System.out.println(
-                "rm <FILE>: Esborra ‘FILE’. Si és una carpeta, esborrarà primer els seus arxius i després la carpeta. Si té subcarpetes, les deixarà intactes i mostrarà un avís a l'usuari");
-        System.out.println("mv <FILE1> <FILE2>: Mou o canvia de nom ‘FILE1’ a ‘FILE2’");
-        System.out.println("Exit : tanca el programa");
-        System.out.println("[?]**************[Ajuda terminal]**************");
+        // System.out.println("[?]**************[Ajuda terminal]**************");
+        // System.out.println("pwd: Mostra quina és la carpeta actual");
+        // System.out.println("cd <DIR>: Canvia la carpeta actual a ‘DIR’. Amb .. canvia
+        // a la carpeta superior");
+        // System.out.println(
+        // "ls: Mostra la llista de directoris i arxius de la carpeta actual (primer
+        // directoris, després arxius, tots dos ordenats alfabèticament)");
+        // System.out.println("ll: Com ls però mostra també la grandària i la data
+        // d'última modificació.");
+        // System.out.println("mkdir <DIR>: Crea el directori ‘DIR’ en la carpeta
+        // actual");
+        // System.out.println(
+        // "rm <FILE>: Esborra ‘FILE’. Si és una carpeta, esborrarà primer els seus
+        // arxius i després la carpeta. Si té subcarpetes, les deixarà intactes i
+        // mostrarà un avís a l'usuari");
+        // System.out.println("mv <FILE1> <FILE2>: Mou o canvia de nom ‘FILE1’ a
+        // ‘FILE2’");
+        // System.out.println("Exit : tanca el programa");
+        // System.out.println("[?]**************[Ajuda terminal]**************");
+        JOptionPane.showMessageDialog(null, "pwd: Mostra quina és la carpeta actual"
+                + "\ncd <DIR>: Canvia la carpeta actual a ‘DIR’. Amb .. canvia a la carpeta superior"
+                + "\nls: Mostra la llista de directoris i arxius de la carpeta actual (primer directoris, després arxius, tots dos ordenats alfabèticament"
+                + "\nll: Com ls però mostra també la grandària i la data d'última modificació"
+                + "\nmkdir <DIR>: Crea el directori ‘DIR’ en la carpeta actual"
+                + "\nrm <FILE>: Esborra ‘FILE’. Si és una carpeta, esborrarà primer els seus arxius i després lacarpeta. Si té subcarpetes, les deixarà intactes i mostrarà un avís a l'usuari"
+                + "\nmv <FILE1> <FILE2>: Mou o canvia de nom ‘FILE1’ a ‘FILE2’"
+                + "\nexit: Acaba el programa", "AJUDA", 3);
     }
 
     public void cd(String ruta) {
@@ -52,7 +69,8 @@ public class MiniFileManagement {
         if (correcto)
             System.out.println("[!] [" + f1 + "] Ha sigut renomenat correctament a [" + f2 + "]");
         else
-            System.out.println("[ERROR] Ha hagut un error al renomenar");
+            // System.out.println("[ERROR] Ha hagut un error al renomenar");
+            JOptionPane.showMessageDialog(null, "[ERROR] Ha hagut un error al renomenar", "ERROR", 0);
     }
 
     public void rm(String archivo) {
@@ -66,7 +84,8 @@ public class MiniFileManagement {
             if (f.delete())
                 System.out.println("[!] [" + f + "] Ha sigut eliminat correctament");
             else
-                System.out.println("[ERROR]" + f + " No ha pogut ser eliminat");
+                // System.out.println("[ERROR]" + f + " No ha pogut ser eliminat");
+                JOptionPane.showMessageDialog(null, "[ERROR]" + f + " No ha pogut ser eliminat", "ERROR", 0);
         } catch (Exception e) {
             System.err.println(e);
         }
@@ -84,7 +103,8 @@ public class MiniFileManagement {
             if (comprobacion) {
                 System.out.println("[!]Carpeta creada correctamente " + rutaactual.getAbsolutePath());
             } else {
-                System.out.println("[ERROR]Error al crear la carpeta " + rutaactual.getAbsolutePath());
+                JOptionPane.showMessageDialog(null, "[ERROR]Error al crear la carpeta", "ERROR", 0);
+                
             }
         } else {
             System.out.println("[!]La carpeta existeix actualment");
