@@ -15,7 +15,6 @@ public class MiniTerminal {
     private static void consola() {
 
         MiniFileManagement manager = new MiniFileManagement();
-
         while (run) {
             System.out.println("\n[!]Introdueix 'HELP' per a més informació");
             System.out.print("\n[> ");

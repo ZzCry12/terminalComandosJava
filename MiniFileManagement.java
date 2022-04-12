@@ -5,9 +5,11 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class MiniFileManagement {
+    private File rutaactual = new File(System.getProperty("user.dir"));
     static Scanner sc = new Scanner(System.in);
 
     public MiniFileManagement() {
+
         super();
     }
 
@@ -30,10 +32,11 @@ public class MiniFileManagement {
     public void cd(String ruta) {
         System.out.println("Introdueix la ruta a la que vols anar");
         ruta = sc.nextLine();
-        File f = new File(ruta);
-        System.setProperty("user.dir", ruta);
+        File rutaactualFile = new File(rutaactual.getAbsolutePath());
+        System.setProperty(rutaactualFile.getAbsolutePath(), ruta);
 
-        System.out.println("\n[!]Directori actual = " + f.getAbsolutePath());
+        System.out.println("\n[!]Directori actual = " + ruta);
+        rutaactual = new File(ruta);
     }
 
     public void mv(String origen, String destino) {
@@ -73,15 +76,15 @@ public class MiniFileManagement {
     public void mkdir(String directorio) {
 
         System.out.println("[!]Introdueix el nom de la carpeta a crear:");
-        File f = new File(sc.nextLine());
+        rutaactual = new File(sc.nextLine());
         // comprobamos si existe la carpeta con el nombre
-        if (!f.exists()) {
+        if (!rutaactual.exists()) {
             // si no existe la creamos
-            boolean comprobacion = f.mkdir();
+            boolean comprobacion = rutaactual.mkdir();
             if (comprobacion) {
-                System.out.println("[!]Carpeta creada correctamente " + f.getAbsolutePath());
+                System.out.println("[!]Carpeta creada correctamente " + rutaactual.getAbsolutePath());
             } else {
-                System.out.println("[ERROR]Error al crear la carpeta " + f.getAbsolutePath());
+                System.out.println("[ERROR]Error al crear la carpeta " + rutaactual.getAbsolutePath());
             }
         } else {
             System.out.println("[!]La carpeta existeix actualment");
@@ -90,17 +93,17 @@ public class MiniFileManagement {
     }
 
     public void ll(String directorio) {
-        File f = new File(".");
-        File[] listado = f.listFiles();
+
+        File[] listado = rutaactual.listFiles();
 
         Arrays.sort(listado);
 
-        System.out.println("\n[!]Directorio actual = " + System.getProperty("user.dir"));
+        System.out.println("\n[!]Directorio actual = " + rutaactual);
 
         for (int i = 0; i < listado.length; i++) {
             if (listado[i].isFile())
                 System.out.println(
-                        "\n[!] [Archiu del directori: " + "'" + System.getProperty("user.dir") + "'] -  "
+                        "\n[!] [Archiu del directori: " + "'" + rutaactual + "'] -  "
                                 + "'" + listado[i].getName() + "'"
                                 + " Grandaria: " + "[" + listado[i].length() + " B]"
                                 + " Ultima modificació: " + listado[i].lastModified());
@@ -110,18 +113,18 @@ public class MiniFileManagement {
 
     public void pwd(String ruta) {
 
-        System.out.println("\n[!]Directori actual = " + System.getProperty("user.dir"));
+        System.out.println("\n[!]Directori actual = " +
+                rutaactual);
 
     }
 
     public void ls(String ruta) {
 
-        File f = new File(".");
-        File[] listado = f.listFiles();
+        File[] listado = rutaactual.listFiles();
 
         Arrays.sort(listado);
 
-        System.out.println("\n[!]Directori actual = " + System.getProperty("user.dir"));
+        System.out.println("\n[!]Directori actual = " + rutaactual);
         System.out.println("");
 
         for (int i = 0; i < listado.length; i++) {
